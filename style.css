@@ -1,0 +1,58 @@
+:root {
+    --bg: #f4f7f9;
+    --panel: #ffffff;
+    --border: #dbe2e8;
+    --text: #2d3436;
+    --crit: #d63031;
+    --warn: #fdcb6e;
+    --ok: #00b894;
+    --dark: #b2bec3; /* The "Unmonitored" color */
+    --accent: #0984e3;
+}
+
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); margin: 0; overflow: hidden; }
+.msd-container { display: flex; flex-direction: column; height: 100vh; padding: 20px; box-sizing: border-box; }
+
+.msd-header { 
+    display: flex; justify-content: space-between; align-items: center; 
+    background: var(--panel); padding: 15px 25px; border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.version { font-size: 12px; vertical-align: top; color: var(--accent); }
+.subtext { font-size: 10px; margin: 0; font-weight: 800; letter-spacing: 1px; color: #999; }
+
+.global-telemetry { display: flex; gap: 40px; align-items: center; }
+.gauge-bg { width: 150px; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin: 5px 0; }
+.gauge-fill { height: 100%; width: 0%; background: var(--ok); transition: 0.5s; }
+
+/* Topology Map */
+.msd-grid { display: grid; grid-template-columns: 350px 1fr; gap: 20px; flex-grow: 1; overflow: hidden; }
+.topology-view, .logical-view { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; }
+.panel-header { background: #f8f9fa; padding: 10px; font-size: 11px; font-weight: 900; border-bottom: 1px solid var(--border); color: #666; }
+
+.map-container { padding: 15px; overflow-y: auto; flex-grow: 1; }
+.asset-node { 
+    padding: 10px; border: 1px solid var(--border); margin-bottom: 8px; 
+    border-left: 5px solid var(--dark); font-size: 12px; display: flex; justify-content: space-between;
+}
+.asset-node.ok { border-left-color: var(--ok); }
+.asset-node.error { border-left-color: var(--crit); background: #fff5f5; animation: blink 2s infinite; }
+.asset-node.dark { border-left-color: var(--dark); opacity: 0.6; }
+
+/* Hex Matrix */
+.hex-matrix { display: flex; flex-wrap: wrap; gap: 6px; padding: 20px; align-content: flex-start; overflow-y: auto; }
+.hex {
+    width: 45px; height: 50px; background: var(--dark);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: bold;
+    cursor: pointer; transition: 0.2s; color: white;
+}
+.hex.ok { background: var(--ok); }
+.hex.anomaly { background: var(--warn); color: #000; box-shadow: 0 0 10px var(--warn); }
+.hex.crit { background: var(--crit); animation: pulse 1s infinite; }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.hidden { display: none !important; }
