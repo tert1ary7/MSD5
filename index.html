@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MSD v5.0 | Digital Twin Command</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="msd-container">
+        <header class="msd-header">
+            <div class="brand">
+                <h1>MASTER SYSTEMS DISPLAY <span class="version">v5.0</span></h1>
+                <p class="subtext">AIRCRAFT-CLASS INFRASTRUCTURE MODEL</p>
+            </div>
+            
+            <div class="global-telemetry">
+                <div class="gauge-group">
+                    <span class="label">SYSTEMIC ENTROPY</span>
+                    <div class="gauge-bg"><div id="entropy-bar" class="gauge-fill"></div></div>
+                    <span id="entropy-val" class="value">0.00</span>
+                </div>
+                <div class="kpi">
+                    <span class="label">DARK NODES (UNMONITORED)</span>
+                    <span id="dark-nodes" class="value text-warn">--</span>
+                </div>
+                <div class="kpi">
+                    <span class="label">TIER-2 ANOMALIES</span>
+                    <span id="anomaly-count" class="value text-crit">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="msd-grid">
+            <!-- Digital Twin Topology -->
+            <section class="topology-view">
+                <div class="panel-header">PHYSICAL ASSET TOPOLOGY (BIM)</div>
+                <div id="topo-map" class="map-container">
+                    <!-- Servers & Paths Rendered Here -->
+                </div>
+            </section>
+
+            <!-- Logical Service Layer -->
+            <section class="logical-view">
+                <div class="panel-header">LOGICAL LICENSE POOLS (A-Z CHAIN)</div>
+                <div class="filter-bar">
+                    <input type="text" id="asset-search" placeholder="Filter Assets...">
+                </div>
+                <div id="service-grid" class="hex-matrix">
+                    <!-- Hexes Rendered Here -->
+                </div>
+            </section>
+        </main>
+
+        <div id="overlay" class="hidden">
+            <div class="overlay-card">
+                <header>
+                    <h2 id="ov-title">Asset Detail</h2>
+                    <button onclick="closeOverlay()">CLOSE</button>
+                </header>
+                <div id="ov-content"></div>
+                <div class="ov-actions">
+                    <button class="btn-ack" onclick="acknowledgeAlert()">ACKNOWLEDGE INCIDENT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
