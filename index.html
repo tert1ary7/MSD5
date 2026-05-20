@@ -2,67 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MSD v5.0 | Digital Twin Command</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSD v7.0 | Geographic Metabolism</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="msd-container">
+    <div class="command-center">
+        <!-- Header Telemetry -->
         <header class="msd-header">
             <div class="brand">
-                <h1>MASTER SYSTEMS DISPLAY <span class="version">v5.0</span></h1>
-                <p class="subtext">AIRCRAFT-CLASS INFRASTRUCTURE MODEL</p>
+                <h1>CHASING THE SUN</h1>
+                <h2>GLOBAL METABOLISM & ROUTING | MSD v7.0</h2>
             </div>
-            
-            <div class="global-telemetry">
-                <div class="gauge-group">
-                    <span class="label">SYSTEMIC ENTROPY</span>
-                    <div class="gauge-bg"><div id="entropy-bar" class="gauge-fill"></div></div>
-                    <span id="entropy-val" class="value">0.00</span>
+            <div class="kpi-group">
+                <div class="kpi">
+                    <span class="label">METABOLIC VELOCITY</span>
+                    <span id="stat-velocity" class="value cyan">+42/sec</span>
                 </div>
                 <div class="kpi">
-                    <span class="label">DARK NODES (UNMONITORED)</span>
-                    <span id="dark-nodes" class="value text-warn">--</span>
-                </div>
-                <div class="kpi">
-                    <span class="label">TIER-2 ANOMALIES</span>
-                    <span id="anomaly-count" class="value text-crit">0</span>
+                    <span class="label">CONCURRENCY ALERTS</span>
+                    <span id="stat-critical" class="value amber">1</span>
                 </div>
             </div>
         </header>
 
-        <main class="msd-grid">
-            <!-- Digital Twin Topology -->
-            <section class="topology-view">
-                <div class="panel-header">PHYSICAL ASSET TOPOLOGY (BIM)</div>
-                <div id="topo-map" class="map-container">
-                    <!-- Servers & Paths Rendered Here -->
-                </div>
-            </section>
+        <!-- Main Geographic Viewport -->
+        <main class="viewport" id="viewport">
+            <!-- World Map Underlay -->
+            <div class="map-underlay"></div>
+            <div class="terminator-sweep"></div>
+            
+            <!-- SVG Data Layer -->
+            <svg id="data-layer" class="map-overlay" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <!-- Glowing Filters -->
+                    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="4" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="4" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
 
-            <!-- Logical Service Layer -->
-            <section class="logical-view">
-                <div class="panel-header">LOGICAL LICENSE POOLS (A-Z CHAIN)</div>
-                <div class="filter-bar">
-                    <input type="text" id="asset-search" placeholder="Filter Assets...">
-                </div>
-                <div id="service-grid" class="hex-matrix">
-                    <!-- Hexes Rendered Here -->
-                </div>
-            </section>
+                <!-- Layer Groups for proper stacking -->
+                <g id="layer-chords"></g>
+                <g id="layer-packets"></g>
+                <g id="layer-callouts"></g>
+                <g id="layer-clusters"></g>
+                <g id="layer-nodes"></g>
+            </svg>
         </main>
 
-        <div id="overlay" class="hidden">
-            <div class="overlay-card">
-                <header>
-                    <h2 id="ov-title">Asset Detail</h2>
-                    <button onclick="closeOverlay()">CLOSE</button>
-                </header>
-                <div id="ov-content"></div>
-                <div class="ov-actions">
-                    <button class="btn-ack" onclick="acknowledgeAlert()">ACKNOWLEDGE INCIDENT</button>
-                </div>
+        <!-- Dynamic Timezone Ribbon -->
+        <footer class="metabolism-ribbon">
+            <div class="ribbon-header">
+                <span class="ribbon-label">CONCURRENCY VOLUME BY TIMEZONE</span>
             </div>
-        </div>
+            <div class="ribbon-track" id="ribbon-track">
+                <!-- Stacked via JS -->
+            </div>
+        </footer>
     </div>
     <script src="app.js"></script>
 </body>
